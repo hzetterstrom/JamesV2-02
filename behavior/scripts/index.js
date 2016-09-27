@@ -1,7 +1,6 @@
 'use strict'
 
 exports.handle = function handle(client) {
-
   const sayHello = client.createStep({
     satisfied() {
       return Boolean(client.getConversationState().helloSent)
@@ -30,51 +29,38 @@ exports.handle = function handle(client) {
   })
 
   const handleGreeting = client.createStep({
-  satisfied() {
-    return false
-  },
+    satisfied() {
+      return false
+    },
 
-  prompt() {
-    client.addTextResponse('Hello world, I mean human')
-    client.done()
-  }
-})
+    prompt() {
+      client.addTextResponse('Hello world, I mean human')
+      client.done()
+    }
+  })
 
-const handleGoodbye = client.createStep({
-  satisfied() {
-    return false
-  },
+  const handleGoodbye = client.createStep({
+    satisfied() {
+      return false
+    },
 
-  prompt() {
-    client.addTextResponse('See you later!')
-    client.done()
-  }
-})
-  
+    prompt() {
+      client.addTextResponse('See you later!')
+      client.done()
+    }
+  })
+
   client.runFlow({
     classifications: {
-			// map inbound message classifications to names of streams
-			goodbye: 'goodbye',
-			greeting: 'greeting',
+      goodbye: 'goodbye',
+      greeting: 'greeting'
     },
-   // autoResponses: {
-      // configure responses to be automatically sent as predicted by the machine learning model
-   // },
-   // streams: {
-   //   main: 'onboarding',
-   //   onboarding: [sayHello],
-   //   end: [untrained]
-   // }
-   
-   streams: {
-    // Add a Stream for greetings and assign it a Step
-	// test
-    goodbye: handleGoodbye,
-	greeting: handleGreeting,
-    main: 'onboarding',
-    onboarding: [sayHello],
-    end: [untrained]
-  }
-   
+    streams: {
+      goodbye: handleGoodbye,
+      greeting: handleGreeting,
+      main: 'onboarding',
+      onboarding: [sayHello],
+      end: [untrained]
+    }
   })
 }
