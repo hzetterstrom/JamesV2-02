@@ -6,6 +6,7 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+  "request": "^2.75.0",
     "initai-node": "https://gitlab.com/init-devs/node-client/repository/archive.tar.gz?ref=master"
   }
 }
