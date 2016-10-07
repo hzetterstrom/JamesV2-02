@@ -1,5 +1,6 @@
 'use strict'
 const getCurrentArticles = require('./lib/getCurrentArticles')
+//note
 
 const firstOfEntityRole = function(message, entity, role) {
   role = role || 'generic';
