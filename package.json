@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
   "request": "^2.75.0",
+  "feed-read": "^0.0.1",
     "initai-node": "https://gitlab.com/init-devs/node-client/repository/archive.tar.gz?ref=master"
   }
 }
