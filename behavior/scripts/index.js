@@ -150,6 +150,18 @@ const sayHello = client.createStep({
     }
   })
 
+const mainMenu = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt() {
+      client.addTextResponse('Here\'s what I know how to do. I\'ll bring you back here if I don\'t quite understand what you\'re asking me. I can get latest tweets, get latest articles, share Hans\' resume, send him a text message. Oh and I can tell you the weather too ')
+      client.done()
+    }
+  })
+
+
 
   client.runFlow({
     classifications: {
@@ -161,7 +173,7 @@ const sayHello = client.createStep({
     streams: {
       goodbye: sayGoodbye,
       greeting: sayHello,
-      main: 'tweets',
+      main: 'mainMenu',
       getWeather: [collectCity, provideWeather],
       tweets: provideTweets,
     }
