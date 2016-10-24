@@ -111,8 +111,8 @@ exports.handle = function handle(client) {
         //  return
        // }
 
-        var tweetData = {};
         for (var i = 0; i < resultBody.length; i++) {
+        var tweetData = {};
         tweetData[i] = {tweet: resultBody[i].content, twitter_url: resultBody[i].link};
         }
 
