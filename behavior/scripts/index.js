@@ -159,7 +159,7 @@ const sayHello = client.createStep({
       ask_current_weather: 'getWeather'
 },
     streams: {
-      goodbye: sayGoodBye,
+      goodbye: sayGoodbye,
       greeting: sayHello,
       main: 'tweets',
       getWeather: [collectCity, provideWeather],
