@@ -14,23 +14,23 @@ const firstOfEntityRole = function(message, entity, role) {
 }
 
 exports.handle = function handle(client) {
-  const sayHello = client.createStep({
-    satisfied() {
-      return Boolean(client.getConversationState().helloSent)
-    },
-
-    prompt() {
-      client.addResponse('app:response:name:welcome')
-      client.addResponse('app:response:name:provide/documentation', {
-        documentation_link: 'http://docs.init.ai',
-      })
-      client.addResponse('app:response:name:provide/instructions')
-      client.updateConversationState({
-        helloSent: true
-      })
-      client.done()
-    }
-  })
+//  const sayHello = client.createStep({
+//    satisfied() {
+//      return Boolean(client.getConversationState().helloSent)
+//    },
+//
+//    prompt() {
+//      client.addResponse('app:response:name:welcome')
+//      client.addResponse('app:response:name:provide/documentation', {
+//        documentation_link: 'http://docs.init.ai',
+//      })
+//      client.addResponse('app:response:name:provide/instructions')
+//      client.updateConversationState({
+//        helloSent: true
+//      })
+//      client.done()
+//    }
+//  })
 
   const untrained = client.createStep({
     satisfied() {
@@ -106,16 +106,6 @@ exports.handle = function handle(client) {
     //prompt(callback) {
     prompt() {
       getCurrentTweets(resultBody => {
-        //if (!resultBody || resultBody.cod !== 200) {
-        //  console.log('Error getting tweets.')
-        //  callback()
-        //  return
-       // }
-
-        //for (var i = 0; i < resultBody.length; i++) {
-        //var tweetData = {};
-        //tweetData[i] = {tweet: resultBody[i].content, twitter_url: resultBody[i].link};
-        //}
 
          const tweetData0 = {
          tweet: resultBody[0].content,
@@ -135,16 +125,42 @@ exports.handle = function handle(client) {
         client.done()
 
       })
-    }//,
+    }
+  })
+
+ const sayGoodbye = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt() {
+      client.addTextResponse('See you later!')
+      client.done()
+    }
+  })
+
+const sayHello = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt() {
+      client.addTextResponse('Hello!!!!!')
+      client.done()
+    }
   })
 
 
   client.runFlow({
     classifications: {
+      greeting: 'greeting',
+      goodbye: 'goodbye',
       ask_current_tweets: 'tweets',
-      ask_current_weather: 'getWeather',
+      ask_current_weather: 'getWeather'
 },
     streams: {
+      goodbye: sayGoodBye,
+      greeting: sayHello,
       main: 'tweets',
       getWeather: [collectCity, provideWeather],
       tweets: [provideTweets],
