@@ -144,8 +144,7 @@ exports.handle = function handle(client) {
       ask_current_tweets: 'tweets'
 },
     streams: {
-      main: 'hi',
-      hi: [sayHello],
+      main: 'tweets',
       getWeather: [collectCity, provideWeather],
       tweets: [provideTweets],
     }
