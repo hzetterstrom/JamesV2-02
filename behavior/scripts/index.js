@@ -90,6 +90,7 @@ exports.handle = function handle(client) {
         }
 
         console.log('sending real weather:', weatherData)
+        client.addTextResponse('Ah, tweets! So many Tweets!')
         client.addResponse('app:response:name:provide_weather/current', weatherData)
         client.done()
 
@@ -104,7 +105,6 @@ exports.handle = function handle(client) {
     },
 
     prompt(callback) {
-      //getCurrentWeather(client.getConversationState().weatherCity.value, resultBody => {
       getCurrentTweets(resultBody => {
         //if (!resultBody || resultBody.cod !== 200) {
         //  console.log('Error getting tweets.')
