@@ -141,7 +141,8 @@ exports.handle = function handle(client) {
 
   client.runFlow({
     classifications: {
-      ask_current_tweets: 'tweets'
+      ask_current_tweets: 'tweets',
+      ask_current_weather: 'getWeather',
 },
     streams: {
       main: 'tweets',
