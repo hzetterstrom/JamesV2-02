@@ -168,12 +168,14 @@ const mainMenu = client.createStep({
       greeting: 'greeting',
       goodbye: 'goodbye',
       ask_current_tweets: 'tweets',
+      main_menu: 'mainMenu',
       ask_current_weather: 'getWeather'
 },
     streams: {
       goodbye: sayGoodbye,
       greeting: sayHello,
       main: 'mainMenu',
+      mainMenu: mainMenu,
       getWeather: [collectCity, provideWeather],
       tweets: provideTweets,
     }
