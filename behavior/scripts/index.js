@@ -1,6 +1,7 @@
 'use strict'
 
 const getCurrentWeather = require('./lib/getCurrentWeather')
+const getCurrentTweets = require('./lib/getCurrentTweets')
 
 const firstOfEntityRole = function(message, entity, role) {
   role = role || 'generic';
@@ -97,12 +98,42 @@ exports.handle = function handle(client) {
     },
   })
 
+  const provideTweets = client.createStep({
+    satisfied() {
+      return false
+    },
+
+    prompt(callback) {
+      //getCurrentWeather(client.getConversationState().weatherCity.value, resultBody => {
+      getCurrentTweets(resultBody => {
+        //if (!resultBody || resultBody.cod !== 200) {
+        //  console.log('Error getting tweets.')
+        //  callback()
+        //  return
+       // }
+
+        var tweetData = {};
+        for (var i = 0; i < resultBody.length; i++) {
+        tweetData[i] = {title: resultBody[i].content, link: resultBody[i].link};
+        }
+
+        console.log('sending tweets:', tweetData)
+        client.addResponse('app:response:name:provide_tweets/current', tweetData)
+        client.done()
+
+        callback()
+      })
+    },
+  })
+
+
   client.runFlow({
     classifications: {},
     streams: {
       main: 'getWeather',
       hi: [sayHello],
       getWeather: [collectCity, provideWeather],
+      tweets: [provideTweets],
     }
   })
 }
