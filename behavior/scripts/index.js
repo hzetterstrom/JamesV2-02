@@ -116,9 +116,9 @@ exports.handle = function handle(client) {
         //tweetData[i] = {tweet: resultBody[i].content, twitter_url: resultBody[i].link};
         //}
 
-          const tweetData = {
-          tweet: resultBody[i].content
-          twitter_url: resultBody[i].link},
+         const tweetData = {
+         tweet: resultBody[1].content,
+         twitter_url: resultBody[1].link,
         }
 
         console.log('sending tweets:', tweetData)
