@@ -103,7 +103,8 @@ exports.handle = function handle(client) {
       return false
     },
 
-    prompt(callback) {
+    //prompt(callback) {
+    prompt() {
       getCurrentTweets(resultBody => {
         //if (!resultBody || resultBody.cod !== 200) {
         //  console.log('Error getting tweets.')
@@ -133,9 +134,8 @@ exports.handle = function handle(client) {
         client.addResponse('app:response:name:provide_tweets/current', tweetData1)
         client.done()
 
-        callback()
       })
-    },
+    }//,
   })
 
 
@@ -144,7 +144,7 @@ exports.handle = function handle(client) {
       ask_current_tweets: 'tweets'
 },
     streams: {
-      main: 'getWeather',
+      main: 'hi',
       hi: [sayHello],
       getWeather: [collectCity, provideWeather],
       tweets: [provideTweets],
