@@ -90,8 +90,7 @@ exports.handle = function handle(client) {
         }
 
         console.log('sending real weather:', weatherData)
-        client.addTextResponse('Ah, tweets! So many Tweets!')
-        //client.addResponse('app:response:name:provide_weather/current', weatherData)
+        client.addResponse('app:response:name:provide_weather/current', weatherData)
         client.done()
 
         callback()
@@ -118,7 +117,8 @@ exports.handle = function handle(client) {
         }
 
         console.log('sending tweets:', tweetData)
-        client.addResponse('app:response:name:provide_tweets/current', tweetData)
+        client.addTextResponse('Ah, tweets! So many Tweets!')
+        //client.addResponse('app:response:name:provide_tweets/current', tweetData)
         client.done()
 
         callback()
