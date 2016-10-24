@@ -125,7 +125,7 @@ exports.handle = function handle(client) {
          twitter_url: resultBody[1].link,
         }
 
-        console.log('sending tweets:', tweetData)
+        console.log('sending tweets:', tweetData0, tweetData1)
         client.addTextResponse('Ah, Tweets! So many Tweets!')
         client.addTextResponse('He said this...')
         client.addResponse('app:response:name:provide_tweets/current', tweetData0)
