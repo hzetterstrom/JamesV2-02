@@ -118,8 +118,7 @@ exports.handle = function handle(client) {
 
         console.log('sending tweets:', tweetData)
         client.addTextResponse('Ah, tweets! So many Tweets!')
-        client.addTextResponse(tweetData)
-        //client.addResponse('app:response:name:provide_tweets/current', tweetData)
+        client.addResponse('app:response:name:provide_tweets/current', tweetData)
         client.done()
 
         callback()
