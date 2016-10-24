@@ -163,7 +163,7 @@ const sayHello = client.createStep({
       greeting: sayHello,
       main: 'tweets',
       getWeather: [collectCity, provideWeather],
-      tweets: [provideTweets],
+      tweets: provideTweets,
     }
   })
 }
